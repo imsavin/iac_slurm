@@ -3,13 +3,13 @@ resource "proxmox_vm_qemu" "slurm_master" {
   name              = "slurm-master.loc"
   target_node       = "proxmox"
 
-  clone             = "ubuntu-2004-cloudinit-template1"
+  clone             = "centos7-cloudinit-template"
 
   os_type           = "cloud-init"
-  cores             = 1
+  cores             = 4
   sockets           = "1"
   cpu               = "host"
-  memory            = 512
+  memory            = 1280
   scsihw            = "virtio-scsi-pci"
   bootdisk          = "scsi0"
   agent = 0
@@ -40,13 +40,13 @@ resource "proxmox_vm_qemu" "slurm_node" {
   name              = "slurm-node-${count.index+1}.loc"
   target_node       = "proxmox"
 
-  clone             = "ubuntu-2004-cloudinit-template1"
+  clone             = "centos7-cloudinit-template"
 
   os_type           = "cloud-init"
-  cores             = 1
+  cores             = 4
   sockets           = "1"
   cpu               = "host"
-  memory            = 512
+  memory            = 1280
   scsihw            = "virtio-scsi-pci"
   bootdisk          = "scsi0"
   agent = 0
