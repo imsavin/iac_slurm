@@ -1,0 +1,27 @@
+---
+
+galaxy_info:
+  author: Pablo Escobar
+  company: sciCORE
+  role_name: slurm
+  namespace: scicore
+  description: Install and configure a Slurm cluster
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 2.10
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags:
+    - slurm
+    - hpc
+
+dependencies: []

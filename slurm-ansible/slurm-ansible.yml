@@ -1,0 +1,52 @@
+- name: Slurm control node
+  hosts: 
+    - slurm-control
+    - slurm-node
+  vars:
+    slurm_update_etc_hosts_file: true
+    slurm_config_deploy_lua_submit_plugin: true
+    slurm_cluster_name: slurm-cluster
+    slurm_master_host: slurm-master.loc
+    slurm_dbd_host: "{{ slurm_master_host }}"
+    slurm_workers_group: slurm-node
+    slurm_submit_group: slurm-node
+    slurm_slurmctld_spool_path: /var/spool/slurmctld
+    slurm_slurmd_spool_path: /var/spool/slurmd
+    slurm_slurmdbd_mysql_db_name: slurm
+    slurm_slurmdbd_mysql_user: slurm
+    slurm_slurmdbd_mysql_password: aadAD432saAdfaoiu
+    slurm_user:
+      RedHat: "root"
+      Debian: "slurm"
+    slurm_group:
+      RedHat: "root"
+      Debian: "slurm"
+    slurm_add_epel_repo: true
+    slurm_packages_common:
+      RedHat:
+        - slurm
+        - slurm-doc
+        - slurm-contribs
+      Debian:
+        - slurm-client
+    slurm_packages_master:
+      RedHat:
+        - slurm-slurmctld
+      Debian:
+        - slurmctld
+    slurm_packages_slurmdbd:
+      RedHat:
+        - slurm-slurmdbd
+        - mariadb-server
+      Debian:
+        - slurmdbd
+        - mariadb-server
+    slurm_packages_worker:
+      RedHat:
+        - slurm-slurmd
+        - vte-profile  # avoid error message "bash __vte_prompt_command command not found" on slurm interative shells
+      Debian:
+        - slurmd
+  roles:
+    - role: scicore.slurm
+      become: True

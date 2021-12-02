@@ -1,0 +1,11 @@
+variable "pm_api_url" {
+  default = "https://{enter-your-url}/api2/json"
+}
+
+variable "pm_user" {
+default = "{enter-your-user}"
+}
+
+variable "pm_password" {
+default = "{enter-your-password}"
+}
